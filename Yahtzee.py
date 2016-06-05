@@ -96,19 +96,51 @@ def checkFullHouse(values):
 	""" Takes a set of 2-tuples representing dice counts, and checks to see if it 
 	results in a Full House == 3 of a kind + a pair """
 	
+	# tested - known working jrd 20160604
+	
 	ok3 = False # Did you get 3 of a kind?
 	ok2 = False # Did you get a pair?
 	
 	for d,v in values:
-		if v = 3:
+		if v == 3:
 			ok3 = True
-		elif v = 2:
+		elif v == 2:
 			ok2 = True
-		if ok3 && ok2:  # Stop, we got it
+		if ok3 & ok2:  # Stop, we got it
 			break
 	
-	return ok3 && ok2  # Only returns true if we found three of one value and two of another
+	return ok3 & ok2  # Only returns true if we found three of one value and two of another
 
+def checkYahtzee(values):
+
+	""" Takes a set of 2-tuples representing dice counts, and checks to see if 
+	it is a Yahtzee (5 of a kind)"""
+	
+	#confirmed jrd 20160604
+	
+	Yahtzee = False
+	
+	for d,v in values:
+		if v == 5:
+			Yahtzee = True
+			break
+	
+	return Yahtzee
+	
+def checkSmStraight(values):
+
+	""" Takes a set of die rolls, and checks to see if 
+	it is a small straight (run of 4)"""
+	smStraight = False
+	svalues = sorted(values)
+	
+	for (k,g) in groupby(enumerate(svalues), lambda (i,x):i-x):
+		if len(map(itemgetter(1),g)) >=4:
+			smStraight = True
+			break
+		
+	return smStraight
+			
 	
 # --- NOW THE FUN BEGINS --- 
 
