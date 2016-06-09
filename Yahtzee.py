@@ -131,9 +131,12 @@ def checkSmStraight(values):
 
 	""" Takes a set of die rolls, and checks to see if 
 	it is a small straight (run of 4)"""
+	
+	#tested and confirmed - jrd
+	
 	smStraight = False
 	svalues = sorted(values)
-	
+		
 	for (k,g) in groupby(enumerate(svalues), lambda (i,x):i-x):
 		if len(map(itemgetter(1),g)) >=4:
 			smStraight = True
