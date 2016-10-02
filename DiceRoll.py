@@ -23,10 +23,39 @@ class DiceRoll():
 		self.values = np.random.randint(1, self.MAX_PIPS, self.NUM_DICE)
 		
 	def toString(self):
-		# returns a string representation of the dice, sorted in increasing order
-		values = sorted(self.values)
-		return '[' + ''.join(str(v) for v in values) + ']'
+		# returns a string representation of the dice
+		values = self.values
+		return ''.join(str(v) for v in values)
 		
-	def countDice(self, n)
-		# return the number of dice showing the given number n
-		return np.sum(values==n)
+	def parseRoll(self, roll):
+		# Returns an integer representation of the dice		
+		list = []
+		if len(roll) != 5:
+			return "Error in parseRoll!"
+		else:
+			for c in roll:
+				list.append(int(c))
+			return list
+			
+	def valueCounts(self, roll):
+		# Returns a list of the counts of each die face
+		values = [0,0,0,0,0,0]
+		list = parseRoll(roll)
+		for val in list:
+			values[val-1] += 1
+		return values
+		
+	def makeRollfromList(self, rollList):
+		# Accepts an array of ints or chars and returns a string 
+		# representation of the roll
+		if len(rollList) != 5:
+			return "Error in makeRollfromList!"
+		else:
+			rollStr = "".join(str(x) for x in rollList)
+			return rollStr
+			
+	def setValues(self, roll):
+		# Accepts a string representation of the dice values
+		# and sets the dice to those values
+		self.values = self.parseRoll(roll)
+		
