@@ -13,14 +13,18 @@ class DiceRoll():
 	# max - maximum # of pips on a die
 	
 	def __init__(self, k, max):
-		values = [1 for _ in xrange(k)]
+		values = [1 for _ in range(k)]
 		self.NUM_DICE = k
 		self.MAX_PIPS = max
 		
-	def roll(self):
+	def roll(self, n=None):
 		# Roll 'em
 		# Warning: transforms values into an ndarray
-		self.values = np.random.randint(1, self.MAX_PIPS, self.NUM_DICE)
+		if (n != None):
+			self.values = np.random.randint(1, self.MAX_PIPS, n)	
+		else:
+			self.values = np.random.randint(1, self.MAX_PIPS, self.NUM_DICE)
+		return self.values
 		
 	def toString(self):
 		# returns a string representation of the dice
